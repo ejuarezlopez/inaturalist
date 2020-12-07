@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> iNaturalist </title>
+
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin=""/>
+
+        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+        crossorigin=""></script>
+
+        <script type="text/javascript" src="data1.js"></script>
+        <script type="text/javascript" src="data2.js"></script>
+        <script type="text/javascript" src="data3.js"></script>
+        <script type="text/javascript" src="data4.js"></script>
+        <script type="text/javascript" src="data5.js"></script>
+        <script type="text/javascript" src="data6.js"></script>
+        <script type="text/javascript" src="data7.js"></script>
+        <script type="text/javascript" src="data8.js"></script>
+        <script type="text/javascript" src="data9.js"></script>
+        <script type="text/javascript" src="data10.js"></script>
+
+        <style type="text/css">
+          html, body { margin: 0; padding: 0; height: 100%; }
+          #map { min-height: 100%; }
+
+
+
+        </style>
+
+    </head>
+
+    <body>
+
+      <div id="map"></div>
+
+        <script type="text/javascript">
+
+          var map = L.map('map', {
+            center: [40.02135, -87.7988],
+            zoom: 6
+
+          });
+
+            var canvas = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '@ <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+           maxZoom: 18,
+           minZoom: 5
+          }).addTo(map);
+
+  //        var imagery = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    //        attribution: 'Map data © OpenStreetMap contributors, CC-BY-SA, Imagery © Mapbox',
+      //      maxZoom: 18,
+        //    minZoom: 5,
+          //  id: 'mapbox.terrain-rgb',
+            //accessToken:'pk.eyJ1IjoiZWp1YXJlemxvcGV6IiwiYSI6ImNrZWRnMWRzaDA1YTAzMW5zMTV2ZTNvb2QifQ.wTVh9zCK39_mfbC3g60GUA'
+        //  }).addTo(map);
+
+
+        //  var geojson; // define a variable to make the geojson layer accessible for the funtion to use
+          var asclepiasg = L.geoJson(data1).addTo(map);
+          var cicutag = L.geoJson(data2).addTo(map);
+          var geraniumg = L.geoJson(data3).addTo(map);
+          var hypericumg = L.geoJson(data4).addTo(map);
+          var monardag = L.geoJson(data5).addTo(map);
+          var negundog = L.geoJson(data6).addTo(map);
+          var nepetag = L.geoJson(data7).addTo(map);
+          var podophyllumg = L.geoJson(data8).addTo(map);
+          var populusg = L.geoJson(data9).addTo(map);
+          var saccharinumg = L.geoJson(data10).addTo(map);
+
+                var basemaps = {
+                   //   "Terrain RGB encoded dem": imagery
+                   "<i>Acer negundo - Boxelder</i>": negundog,
+                   "<i>Acer saccharinum - Silver Maple</i>": saccharinumg,
+                   "<i>Asclepias syriaca - Common Milkweed</i>": asclepiasg,
+                   "<i>Cicuta maculata - Water Hemlock</i>": cicutag,
+                   "<i>Geranium maculatum - Wild Geranium</i>": geraniumg,
+                   "<i>Hypericum perforatum - St John's Wort</i>": hypericumg,
+                   "<i>Monarda fistulosa - Wild Bergamot</i>": monardag,
+                   "<i>Nepeta cataria - Catnip</i>": nepetag,
+                   "<i>Podophyllum peltatum - Mayapple</i>": podophyllumg,
+                   "<i>Populus deltoides - Eastern Cottonwood <br><br> </i>": populusg
+                           };
+           var overlaymaps = {
+                "base":canvas,
+                              };
+            L.control.layers(basemaps, overlaymaps).addTo(map);
+
+        </script>
+   </body>
+</html>
